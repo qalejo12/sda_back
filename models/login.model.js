@@ -7,7 +7,7 @@ const loginUser = async (contraseña, codigo) => {
 };
 
 const authProfessor = async (idUsuario, codigo) => {
-    const query = "SELECT * FROM profesor WHERE id_usuario = $1 AND codigo_profesor = $2";
+    const query = "SELECT * FROM profesor WHERE id_usuario = $1 AND codigo_usuario = $2";
     const { rows } = await pool.query(query, [idUsuario, codigo]);
     return rows.length > 0;
 };
