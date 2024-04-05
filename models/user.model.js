@@ -12,9 +12,9 @@ const remove = async (id) => {
     return rows[0];
 };
 
-const update = async (id, contraseña, codigo, es_profesor) => {
+const update = async (id, password, code, is_teacher) => {
     const query = "UPDATE usuario SET contraseña = $1, codigo = $2, es_profesor = $3 WHERE id_usuario = $4 RETURNING *";
-    const { rows } = await pool.query(query, [contraseña, codigo, es_profesor, id]);
+    const { rows } = await pool.query(query, [password, code, is_teacher, id]);
     return rows[0];
 };
 

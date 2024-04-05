@@ -26,8 +26,8 @@ const remove = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, apellido, email, edad, codigo_profesor } = req.body;
-        const updatedProfesor = await teacherModel.update(id, nombre, apellido, email, edad, codigo_profesor);
+        const { name, lastname, email, age, code_teacher } = req.body;
+        const updatedProfesor = await teacherModel.update(id, name, lastname, email, age, code_teacher);
         res.json(updatedProfesor);
     } catch (error) {
         console.log(error);

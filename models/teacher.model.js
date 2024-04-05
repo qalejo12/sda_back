@@ -11,9 +11,9 @@ const remove = async (id) => {
     return rows[0];
 };
 
-const update = async (id, nombre, apellido, email, edad, codigo_profesor) => {
+const update = async (id, name, lastname, email, age, code_teacher) => {
     const query = "UPDATE profesor SET nombre = $1, apellido = $2, email = $3, edad = $4, codigo_profesor = $5 WHERE id_profesor = $6 RETURNING *";
-    const { rows } = await pool.query(query, [nombre, apellido, email, edad, codigo_profesor, id]);
+    const { rows } = await pool.query(query, [name, lastname, email, age, code_teacher, id]);
     return rows[0];
 };
 

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import teacherRoute from "./routes/teacher.route.js";
 import loginRoute from "./routes/login.route.js";
 import registerRoute from "./routes/register.route.js"
@@ -7,6 +8,8 @@ import userRoute from"./routes/user.route.js"
 import subjectRoute from "./routes/subject.route.js"
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

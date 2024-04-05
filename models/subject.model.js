@@ -12,15 +12,15 @@ const remove = async (id) => {
     return rows[0];
 };
 
-const create = async (nombre) => {
+const create = async (name) => {
     const query = "INSERT INTO asignatura (nombre) VALUES ($1) RETURNING *"
-    const {rows} = await pool.query(query, [nombre]);
+    const {rows} = await pool.query(query, [name]);
     return rows[0];
 };
 
-const update = async (id, nombre) => {
+const update = async (id, name) => {
     const query = "UPDATE asignatura SET nombre = $1 WHERE id_asignatura = $2 RETURNING *";
-    const { rows } = await pool.query(query, [nombre, id]);
+    const { rows } = await pool.query(query, [name, id]);
     return rows[0];
 };
 

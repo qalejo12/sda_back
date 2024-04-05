@@ -27,8 +27,8 @@ const remove = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { contraseña, codigo, es_profesor } = req.body;
-        const updatedUsuario = await userModel.update(id, contraseña, codigo, es_profesor);
+        const { password, code, is_teacher } = req.body;
+        const updatedUsuario = await userModel.update(id, password, code, is_teacher);
         res.json({message: "Usuario modificado correctamente", updateUser: updatedUsuario});
     } catch (error) {
         console.log(error);

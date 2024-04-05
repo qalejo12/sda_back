@@ -25,8 +25,8 @@ const remove = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const {nombre} = req.body;
-        const response = await subjectModel.create(nombre);
+        const {name} = req.body;
+        const response = await subjectModel.create(name);
         res.json({ message: "Asignatura creada correctamente", createdSubject: response });
         res.json(response);
     } catch (error) {
@@ -37,8 +37,8 @@ const create = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre} = req.body;
-        const updatedSubject = await subjectModel.update(id, nombre);
+        const { name} = req.body;
+        const updatedSubject = await subjectModel.update(id, name);
         res.json({message: "Asignatura modificada correctamente", updateSubject: updatedSubject});
     } catch (error) {
         console.log(error);
