@@ -1,29 +1,18 @@
-import { profesorModel } from "../models/profesor.model.js";
+import { teacherModel } from "../models/teacher.model.js";
 
 const getAll = async (_, res) => {
     try {
-        const response = await profesorModel.findAll();
+        const response = await teacherModel.findAll();
         res.json(response);
     } catch (error) {
         console.log(error)
     }
 };
 
-
-const create = async (req, res) => {
-    try {
-        const {nombre,apellido,email,edad,codigo_profesor} = req.body;
-        const response = await profesorModel.create(nombre,apellido,email,edad,codigo_profesor);
-        res.json(response);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
 const remove = async (req, res) => {
     try {
         const id = req.params.id; 
-        const response = await profesorModel.remove(id);
+        const response = await teacherModel.remove(id);
         if (!response) {
             return res.status(404).json({ message: "No se encontró el profesor para eliminar" });
         }
@@ -38,7 +27,7 @@ const update = async (req, res) => {
     try {
         const { id } = req.params;
         const { nombre, apellido, email, edad, codigo_profesor } = req.body;
-        const updatedProfesor = await profesorModel.update(id, nombre, apellido, email, edad, codigo_profesor);
+        const updatedProfesor = await teacherModel.update(id, nombre, apellido, email, edad, codigo_profesor);
         res.json(updatedProfesor);
     } catch (error) {
         console.log(error);
@@ -46,9 +35,8 @@ const update = async (req, res) => {
     }
 };
 
-export const profesorController = {
+export const teacherController = {
     getAll,
-    create,
     remove,
     update,
 };

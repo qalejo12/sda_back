@@ -5,12 +5,6 @@ const findAll = async() => {
     return rows;
 };
 
-const create = async (nombre,apellido,email,edad,codigo_profesor) => {
-    const query = "INSERT INTO profesor (nombre, apellido, email, edad,codigo_profesor) VALUES ($1, $2, $3, $4, $5) RETURNING *"
-    const {rows} = await pool.query(query, [nombre,apellido,email,edad,codigo_profesor]);
-    return rows[0];
-};
-
 const remove = async (id) => {
     const query = "DELETE FROM profesor WHERE id_profesor = $1 RETURNING *";
     const { rows } = await pool.query(query, [id]);
@@ -24,9 +18,8 @@ const update = async (id, nombre, apellido, email, edad, codigo_profesor) => {
 };
 
 
-export const profesorModel = {
+export const teacherModel = {
     findAll,
-    create,
     remove,
     update,
 };
