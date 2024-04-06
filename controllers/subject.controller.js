@@ -16,7 +16,7 @@ const remove = async (req, res) => {
         if (!response) {
             return res.status(404).json({ message: "No se encontró la asignatura para eliminar" });
         }
-        res.json({ message: "Asignatura eliminado correctamente", deletedProfesor: response });
+        res.json({ message: "Asignatura eliminada correctamente", deletedProfesor: response });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error al intentar eliminar la asignatura" });
@@ -25,8 +25,8 @@ const remove = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-        const {name} = req.body;
-        const response = await subjectModel.create(name);
+        const {name, qr} = req.body;
+        const response = await subjectModel.create(name, qr);
         res.json({ message: "Asignatura creada correctamente", createdSubject: response });
         res.json(response);
     } catch (error) {
@@ -37,8 +37,8 @@ const create = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name} = req.body;
-        const updatedSubject = await subjectModel.update(id, name);
+        const { name, qr} = req.body;
+        const updatedSubject = await subjectModel.update(id, name, qr);
         res.json({message: "Asignatura modificada correctamente", updateSubject: updatedSubject});
     } catch (error) {
         console.log(error);
