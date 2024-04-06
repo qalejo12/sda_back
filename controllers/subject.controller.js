@@ -28,7 +28,6 @@ const create = async (req, res) => {
         const {name, qr} = req.body;
         const response = await subjectModel.create(name, qr);
         res.json({ message: "Asignatura creada correctamente", createdSubject: response });
-        res.json(response);
     } catch (error) {
         console.log(error);
     }
