@@ -9,6 +9,19 @@ const getAll = async (_, res) => {
     }
 };
 
+const getTeacher = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const response = await teacherModel.findTeacher(id);
+        if (!response) {
+            return res.status(404).json({ message: "No se encontró el profesor" });
+        }
+        res.json({ message: "Profesor encontrado", foundTeacher: response });
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 const remove = async (req, res) => {
     try {
         const id = req.params.id; 
@@ -37,6 +50,7 @@ const update = async (req, res) => {
 
 export const teacherController = {
     getAll,
+    getTeacher,
     remove,
     update,
 };

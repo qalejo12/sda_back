@@ -9,6 +9,19 @@ const getAll = async (_, res) => {
     }
 };
 
+const getSubject = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const response = await subjectModel.findSubject(id);
+        if (!response) {
+            return res.status(404).json({ message: "No se encontró la asignatura" });
+        }
+        res.json({ message: "Asignatura encontrada", foundSubject: response });
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 const remove = async (req, res) => {
     try {
         const id = req.params.id; 
@@ -16,7 +29,7 @@ const remove = async (req, res) => {
         if (!response) {
             return res.status(404).json({ message: "No se encontró la asignatura para eliminar" });
         }
-        res.json({ message: "Asignatura eliminada correctamente", deletedProfesor: response });
+        res.json({ message: "Asignatura eliminada correctamente", deletedSubject: response });
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error al intentar eliminar la asignatura" });
@@ -50,4 +63,5 @@ export const subjectController = {
     remove,
     create,
     update,
+    getSubject
 };

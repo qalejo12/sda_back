@@ -6,6 +6,12 @@ const findAll = async() => {
     return rows;
 };
 
+const findUser = async(id) => {
+    const query = "SELECT * FROM usuario WHERE id_usuario = $1";
+    const { rows } = await pool.query(query, [id]);
+    return rows[0];
+};
+
 const remove = async (id) => {
     const query = "DELETE FROM usuario WHERE id_usuario = $1 RETURNING *";
     const { rows } = await pool.query(query, [id]);
@@ -21,6 +27,7 @@ const update = async (id, password, code, is_teacher) => {
 
 export const userModel = {
     findAll,
+    findUser,
     remove,
     update,
 };

@@ -10,6 +10,19 @@ const getAll = async (_, res) => {
     }
 };
 
+const getUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const response = await userModel.findUser(id);
+        if (!response) {
+            return res.status(404).json({ message: "No se encontró el usuario" });
+        }
+        res.json({ message: "Usuario encontrado", foundUser: response });
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 const remove = async (req, res) => {
     try {
         const id = req.params.id; 
@@ -38,6 +51,7 @@ const update = async (req, res) => {
 
 export const userController = {
     getAll,
+    getUser,
     remove,
     update,
 };

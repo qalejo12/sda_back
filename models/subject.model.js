@@ -1,9 +1,15 @@
+import { query } from "express";
 import { pool } from "../database/conection.js"
 
 
 const findAll = async() => {
     const {rows} = await pool.query("SELECT * FROM asignatura");
     return rows;
+};
+const findSubject = async(id) => {
+    const query = "SELECT * FROM asignatura WHERE id_asignatura = $1";
+    const { rows } = await pool.query(query, [id]);
+    return rows[0];
 };
 
 const remove = async (id) => {
@@ -13,7 +19,7 @@ const remove = async (id) => {
 };
 
 const create = async (name, qr) => {
-    const query = "INSERT INTO asignatura (nombre, qr) VALUES ($1, $2) RETURNING *"
+    const query = "INSERT INTO asignatura (nombre, qr) VALUES ($1, $2) RETURNING *";
     const {rows} = await pool.query(query, [name, qr]);
     return rows[0];
 };
@@ -30,4 +36,5 @@ export const subjectModel = {
     remove,
     create,
     update,
+    findSubject,
 };

@@ -5,6 +5,12 @@ const findAll = async() => {
     return rows;
 };
 
+const findTeacher = async(id) => {
+    const query = "SELECT * FROM profesor WHERE id_profesor = $1";
+    const { rows } = await pool.query(query, [id]);
+    return rows[0];
+};
+
 const remove = async (id) => {
     const query = "DELETE FROM profesor WHERE id_profesor = $1 RETURNING *";
     const { rows } = await pool.query(query, [id]);
@@ -22,4 +28,5 @@ export const teacherModel = {
     findAll,
     remove,
     update,
+    findTeacher
 };

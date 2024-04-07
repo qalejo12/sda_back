@@ -13,7 +13,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "Credenciales inválidas" });
         }
 
-        const isTeacher = await loginModel.authProfessor(user.id_usuario, codigo);
+        const isTeacher = await loginModel.authProfessor(user.id_usuario, code);
 
         if (!isTeacher) {
             return res.status(401).json({ message: "Usuario no registrado" });
@@ -21,7 +21,7 @@ const login = async (req, res) => {
 
         const token = jwt.sign({ idUsuario: user.id_usuario }, 'your_secret_key', { expiresIn: '1h' });
         
-        res.json({ token });
+        res.json({ message: "Sesión iniciada correctamente.", token });
 
     } catch (error) {
         console.log(error);
